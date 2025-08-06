@@ -90,15 +90,11 @@ Aplicação de nutricionista com inteligência artificial que cria dietas person
 6. ✅ Geração de dieta simples (templates)
 7. ✅ Visualização do plano alimentar
 
-**Meta**: 50+ usuários, 30% retenção em 7 dias
-
 ### ETAPA 2 - Tipo Corporal (3-4 semanas)
 **Funcionalidades:**
 1. 🎨 Seleção visual de tipo corporal
 2. 📊 Questionário complementar (distribuição gordura, metabolismo)
 3. ⚙️ Ajuste automático das dietas baseado no tipo corporal
-
-**Meta**: 70% dos usuários completam seleção, 20% melhoria na satisfação
 
 ### ETAPA 3 - Acompanhamento (3-4 semanas)
 **Funcionalidades:**
@@ -106,15 +102,11 @@ Aplicação de nutricionista com inteligência artificial que cria dietas person
 2. 📈 Gráfico de evolução
 3. 🎯 Dashboard básico de progresso
 
-**Meta**: 60% registram peso semanalmente, 50% retenção em 30 dias
-
 ### ETAPA 4 - Substituições (4-6 semanas)
 **Funcionalidades:**
 1. 🔄 Sistema de substituição de alimentos
 2. 🚫 Cadastro de preferências e restrições
 3. 🔍 Banco de equivalências nutricionais
-
-**Meta**: 40% fazem substituições, melhoria na satisfação das dietas
 
 ### ETAPA 5 - Fotos de Progresso (4-6 semanas)
 **Funcionalidades:**
@@ -122,15 +114,11 @@ Aplicação de nutricionista com inteligência artificial que cria dietas person
 2. 🖼️ Galeria de progresso temporal
 3. 📋 Relatórios visuais
 
-**Meta**: 30% fazem upload de fotos
-
 ### ETAPA 6 - Inteligência Artificial (6-8 semanas)
 **Funcionalidades:**
 1. 🤖 Integração com OpenAI para geração de dietas
 2. 🧠 Substituições inteligentes
 3. 💬 Chat nutricional básico
-
-**Meta**: 80% aprovam dietas IA, 60% usam funcionalidades IA
 
 ### ETAPA 7 - App Mobile (8-12 semanas)
 **Funcionalidades:**
@@ -139,26 +127,8 @@ Aplicação de nutricionista com inteligência artificial que cria dietas person
 3. 🔔 Push notifications
 4. 🔄 Sincronização web/mobile
 
-**Meta**: 70% dos usuários web baixam app
-
 ### ETAPA 8 - Monetização (4-6 semanas)
 **Funcionalidades:**
 1. 💳 Sistema de pagamento (planos premium)
 2. 🎯 Funcionalidades premium (IA avançada, relatórios)
 3. 🎁 Sistema de referência
-
-**Meta**: 5% conversão para premium, R$ 10k/mês de receita
-
-## 🎨 Diferencial Competitivo
-- IA personalizada para substituições alimentares
-- Interface simples e intuitiva
-- Foco em educação nutricional
-- Acompanhamento visual de progresso
-- Gratuito no modelo básico
-
-## 📈 Métricas de Sucesso
-- Taxa de cadastro completado
-- Engajamento semanal (registros de peso)
-- Retenção de usuários (30, 60, 90 dias)
-- Satisfação com as dietas geradas
-- Tempo médio na plataforma
