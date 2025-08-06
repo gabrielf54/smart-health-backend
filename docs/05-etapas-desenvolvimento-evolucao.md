@@ -53,11 +53,6 @@ Criar uma aplicação funcional que permite ao usuário cadastrar-se, inserir da
 - [ ] Interface responsiva e intuitiva
 - [ ] Aplicação deployed e funcionando
 
-### 📊 Métricas
-- **Meta**: 50+ usuários cadastrados
-- **Retenção**: 30% voltam em 7 dias
-- **Funcionalidade**: 80% completam o onboarding
-
 ---
 
 ## 🎨 ETAPA 2 - Personalização do Tipo Corporal
