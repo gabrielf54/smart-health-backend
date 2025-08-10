@@ -60,7 +60,7 @@ Aplicação que funciona como um nutricionista com inteligência artificial, cri
 
 ## 🚀 Próximos Passos
 
-### ETAPA 1 - MVP (2-3 meses)
+### ETAPA 1 - MVP
 **Objetivo**: Aplicação funcional básica para validação
 - [ ] **Cadastro**: Sistema de autenticação completo
 - [ ] **Coleta de Dados**: Dados pessoais, atividade, objetivos
@@ -69,7 +69,7 @@ Aplicação que funciona como um nutricionista com inteligência artificial, cri
 
 **Meta**: 50+ usuários, 30% retenção em 7 dias
 
-### ETAPA 2 - Tipo Corporal (3-4 semanas)
+### ETAPA 2 - Tipo Corporal
 **Objetivo**: Melhorar precisão do cálculo calórico
 - [ ] **Seleção Visual**: Galeria de tipos corporais
 - [ ] **Questionário**: Distribuição gordura, metabolismo
@@ -77,7 +77,7 @@ Aplicação que funciona como um nutricionista com inteligência artificial, cri
 
 **Meta**: 70% completam seleção, 20% melhoria satisfação
 
-### ETAPA 3 - Acompanhamento (3-4 semanas)
+### ETAPA 3 - Acompanhamento
 **Objetivo**: Permitir registro e visualização de progresso
 - [ ] **Registro de Peso**: Formulário simples e histórico
 - [ ] **Gráficos**: Evolução visual do progresso
@@ -85,7 +85,7 @@ Aplicação que funciona como um nutricionista com inteligência artificial, cri
 
 **Meta**: 60% registram peso semanalmente
 
-### ETAPA 4 - Substituições (4-6 semanas)
+### ETAPA 4 - Substituições
 **Objetivo**: Personalização baseada em preferências
 - [ ] **Preferências**: Alergias, restrições, gostos
 - [ ] **Sistema de Troca**: Equivalências nutricionais
@@ -93,7 +93,7 @@ Aplicação que funciona como um nutricionista com inteligência artificial, cri
 
 **Meta**: 40% fazem substituições
 
-### ETAPA 5 - Fotos (4-6 semanas)
+### ETAPA 5 - Fotos
 **Objetivo**: Acompanhamento visual de progresso
 - [ ] **Upload**: Interface para fotos de progresso  
 - [ ] **Galeria**: Timeline e comparações antes/depois
@@ -101,7 +101,7 @@ Aplicação que funciona como um nutricionista com inteligência artificial, cri
 
 **Meta**: 30% fazem upload de fotos
 
-### ETAPA 6 - IA (6-8 semanas)
+### ETAPA 6 - IA
 **Objetivo**: Dietas inteligentes e personalizadas
 - [ ] **OpenAI**: Integração para geração de dietas
 - [ ] **Substituições IA**: Sugestões inteligentes
@@ -109,7 +109,7 @@ Aplicação que funciona como um nutricionista com inteligência artificial, cri
 
 **Meta**: 80% aprovam dietas IA
 
-### ETAPA 7 - Mobile (8-12 semanas)
+### ETAPA 7 - Mobile
 **Objetivo**: App móvel para uso diário
 - [ ] **React Native**: App iOS e Android
 - [ ] **Sincronização**: Dados compartilhados web/mobile
@@ -117,7 +117,7 @@ Aplicação que funciona como um nutricionista com inteligência artificial, cri
 
 **Meta**: 70% baixam app
 
-### ETAPA 8 - Premium (4-6 semanas)
+### ETAPA 8 - Premium
 **Objetivo**: Modelo de negócio sustentável
 - [ ] **Planos**: Gratuito vs Premium
 - [ ] **Pagamentos**: Stripe/PagSeguro

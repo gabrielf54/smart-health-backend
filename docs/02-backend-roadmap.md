@@ -27,7 +27,7 @@ src/
 └── tests/              # Testes unitários
 ```
 
-## 🚀 ETAPA 1 - MVP (2-3 meses)
+## 🚀 ETAPA 1
 
 ### Configuração Base
 - [ ] Configurar projeto Node.js + TypeScript
@@ -62,7 +62,7 @@ src/
 - [ ] Endpoint buscar dieta (`GET /diet`)
 - [ ] Sistema de templates de refeições
 
-## 🎨 ETAPA 2 - Tipo Corporal (3-4 semanas)
+## 🎨 ETAPA 2 - Tipo Corporal
 
 ### Funcionalidades
 - [ ] Modelo de tipo corporal no banco
@@ -71,7 +71,7 @@ src/
 - [ ] Ajuste do cálculo calórico baseado no tipo corporal
 - [ ] Recálculo automático das dietas existentes
 
-## 📊 ETAPA 3 - Acompanhamento (3-4 semanas)
+## 📊 ETAPA 3 - Acompanhamento
 
 ### Registro de Progresso
 - [ ] Modelo de registros de peso
@@ -85,7 +85,7 @@ src/
 - [ ] Cálculos de estatísticas de progresso
 - [ ] Indicadores de meta atingida
 
-## 🔄 ETAPA 4 - Substituições (4-6 semanas)
+## 🔄 ETAPA 4 - Substituições
 
 ### Preferências Alimentares
 - [ ] Modelo de preferências no banco
@@ -99,7 +99,7 @@ src/
 - [ ] Base de dados de equivalências nutricionais
 - [ ] Histórico de substituições por usuário
 
-## 📸 ETAPA 5 - Fotos (4-6 semanas)
+## 📸 ETAPA 5 - Fotos
 
 ### Upload de Imagens
 - [ ] Configurar AWS S3 ou Cloudinary
@@ -114,7 +114,7 @@ src/
 - [ ] Organização cronológica
 - [ ] Soft delete para privacidade
 
-## 🤖 ETAPA 6 - Inteligência Artificial (6-8 semanas)
+## 🤖 ETAPA 6 - Inteligência Artificial
 
 ### Integração OpenAI
 - [ ] Configurar OpenAI API
@@ -130,7 +130,7 @@ src/
 - [ ] Rate limiting específico para IA
 - [ ] Controle de custos e monitoramento
 
-## 📱 ETAPA 7 - App Mobile (8-12 semanas)
+## 📱 ETAPA 7 - App Mobile
 
 ### API Mobile
 - [ ] Otimizações de endpoints para mobile
@@ -144,7 +144,7 @@ src/
 - [ ] Sincronização de dados entre plataformas
 - [ ] Endpoints de configuração de notificações
 
-## 💰 ETAPA 8 - Monetização (4-6 semanas)
+## 💰 ETAPA 8 - Monetização
 
 ### Sistema de Pagamentos
 - [ ] Integração Stripe/PagSeguro

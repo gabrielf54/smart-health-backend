@@ -90,44 +90,44 @@ Aplicação de nutricionista com inteligência artificial que cria dietas person
 6. ✅ Geração de dieta simples (templates)
 7. ✅ Visualização do plano alimentar
 
-### ETAPA 2 - Tipo Corporal (3-4 semanas)
+### ETAPA 2 - Tipo Corporal
 **Funcionalidades:**
 1. 🎨 Seleção visual de tipo corporal
 2. 📊 Questionário complementar (distribuição gordura, metabolismo)
 3. ⚙️ Ajuste automático das dietas baseado no tipo corporal
 
-### ETAPA 3 - Acompanhamento (3-4 semanas)
+### ETAPA 3 - Acompanhamento
 **Funcionalidades:**
 1. 📊 Registro de peso com histórico
 2. 📈 Gráfico de evolução
 3. 🎯 Dashboard básico de progresso
 
-### ETAPA 4 - Substituições (4-6 semanas)
+### ETAPA 4 - Substituições
 **Funcionalidades:**
 1. 🔄 Sistema de substituição de alimentos
 2. 🚫 Cadastro de preferências e restrições
 3. 🔍 Banco de equivalências nutricionais
 
-### ETAPA 5 - Fotos de Progresso (4-6 semanas)
+### ETAPA 5 - Fotos de Progresso
 **Funcionalidades:**
 1. 📸 Upload e gerenciamento de fotos
 2. 🖼️ Galeria de progresso temporal
 3. 📋 Relatórios visuais
 
-### ETAPA 6 - Inteligência Artificial (6-8 semanas)
+### ETAPA 6 - Inteligência Artificial
 **Funcionalidades:**
 1. 🤖 Integração com OpenAI para geração de dietas
 2. 🧠 Substituições inteligentes
 3. 💬 Chat nutricional básico
 
-### ETAPA 7 - App Mobile (8-12 semanas)
+### ETAPA 7 - App Mobile
 **Funcionalidades:**
 1. 📱 App React Native
 2. 📷 Câmera integrada para fotos
 3. 🔔 Push notifications
 4. 🔄 Sincronização web/mobile
 
-### ETAPA 8 - Monetização (4-6 semanas)
+### ETAPA 8 - Monetização
 **Funcionalidades:**
 1. 💳 Sistema de pagamento (planos premium)
 2. 🎯 Funcionalidades premium (IA avançada, relatórios)

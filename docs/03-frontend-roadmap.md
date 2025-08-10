@@ -36,7 +36,7 @@ src/
 └── assets/            # Imagens e arquivos estáticos
 ```
 
-## 🚀 ETAPA 1 - MVP (2-3 meses)
+## 🚀 ETAPA 1 - MVP
 
 ### Configuração Base
 - [ ] Configurar Vite + React + TypeScript
@@ -72,7 +72,7 @@ src/
 - [ ] Responsividade mobile-first
 - [ ] Estados de loading/error
 
-## 🎨 ETAPA 2 - Tipo Corporal (3-4 semanas)
+## 🎨 ETAPA 2 - Tipo Corporal
 
 ### Seleção Visual de Tipo Corporal
 - [ ] Página de tipo corporal (`/onboarding/body-type`)
@@ -87,7 +87,7 @@ src/
 - [ ] Indicadores visuais das mudanças
 - [ ] Feedback ao usuário sobre os ajustes
 
-## 📊 ETAPA 3 - Acompanhamento (3-4 semanas)
+## 📊 ETAPA 3 - Acompanhamento
 
 ### Registro de Progresso
 - [ ] Página de progresso (`/progress`)
@@ -102,7 +102,7 @@ src/
 - [ ] Métricas de variação de peso
 - [ ] Indicadores de meta atingida
 
-## 🔄 ETAPA 4 - Substituições (4-6 semanas)
+## 🔄 ETAPA 4 - Substituições
 
 ### Preferências Alimentares
 - [ ] Página de preferências (`/profile/preferences`)
@@ -117,7 +117,7 @@ src/
 - [ ] Botão "trocar" em cada alimento da dieta
 - [ ] Histórico de substituições
 
-## 📸 ETAPA 5 - Fotos (4-6 semanas)
+## 📸 ETAPA 5 - Fotos
 
 ### Upload de Fotos
 - [ ] Página de fotos de progresso (`/progress/photos`)
@@ -133,7 +133,7 @@ src/
 - [ ] Possibilidade de adicionar anotações
 - [ ] Interface motivadora e privada
 
-## 🤖 ETAPA 6 - Inteligência Artificial (6-8 semanas)
+## 🤖 ETAPA 6 - Inteligência Artificial
 
 ### Dietas com IA
 - [ ] Botão para gerar dieta com IA
@@ -154,7 +154,7 @@ src/
 - [ ] Respostas contextualizadas
 - [ ] Disclaimers sobre limitações
 
-## 📱 ETAPA 7 - App Mobile (8-12 semanas)
+## 📱 ETAPA 7 - App Mobile
 
 ### React Native Setup
 - [ ] Configurar Expo + TypeScript
@@ -176,7 +176,7 @@ src/
 - [ ] Funcionalidades offline básicas
 - [ ] Widget para tela inicial
 
-## 💰 ETAPA 8 - Monetização (4-6 semanas)
+## 💰 ETAPA 8 - Monetização
 
 ### Planos e Pagamentos
 - [ ] Página de planos (`/pricing`)
