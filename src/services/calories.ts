@@ -1,6 +1,13 @@
-import { Profile } from '@prisma/client';
+type ProfileCore = {
+	sex?: 'MALE' | 'FEMALE' | null;
+	weightKg?: number | null;
+	heightCm?: number | null;
+	age?: number | null;
+	activityLevel?: 'SEDENTARY' | 'LIGHT' | 'MODERATE' | 'HIGH' | 'EXTREME' | null;
+	goal?: 'LOSE_WEIGHT' | 'MAINTAIN' | 'GAIN_MUSCLE' | 'GAIN_WEIGHT' | null;
+};
 
-function harrisBenedict(profile: Profile): number {
+function harrisBenedict(profile: ProfileCore): number {
 	const { sex, weightKg, heightCm, age } = profile;
 	if (!sex || !weightKg || !heightCm || !age) return 0;
 	if (sex === 'MALE') {
@@ -9,7 +16,7 @@ function harrisBenedict(profile: Profile): number {
 	return 447.593 + 9.247 * weightKg + 3.098 * heightCm - 4.33 * age;
 }
 
-function activityFactor(level?: Profile['activityLevel']): number {
+function activityFactor(level?: ProfileCore['activityLevel']): number {
 	switch (level) {
 		case 'SEDENTARY':
 			return 1.2;
@@ -26,7 +33,7 @@ function activityFactor(level?: Profile['activityLevel']): number {
 	}
 }
 
-function goalAdjustment(goal?: Profile['goal']): number {
+function goalAdjustment(goal?: ProfileCore['goal']): number {
 	switch (goal) {
 		case 'LOSE_WEIGHT':
 			return -400;
@@ -41,7 +48,7 @@ function goalAdjustment(goal?: Profile['goal']): number {
 	}
 }
 
-export function calculateCalorieTargets(profile: Profile) {
+export function calculateCalorieTargets(profile: ProfileCore) {
 	const tmb = harrisBenedict(profile);
 	const total = Math.max(1200, Math.round(tmb * activityFactor(profile.activityLevel)));
 	const target = Math.round(total + goalAdjustment(profile.goal));

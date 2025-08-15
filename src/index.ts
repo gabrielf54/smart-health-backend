@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import { env } from './utils/env';
 import { router } from './routes';
+import { errorHandler } from './middlewares/errorHandler';
 
 const app = express();
 
@@ -38,5 +39,8 @@ app.listen(port, () => {
 	// eslint-disable-next-line no-console
 	console.log(`Smart Health API running on port ${port}`);
 });
+
+// Error handler (must be after routes)
+app.use(errorHandler);
 
 
