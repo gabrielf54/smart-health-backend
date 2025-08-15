@@ -16,8 +16,9 @@
 
 ```
 src/
-├── controllers/          # Controllers das rotas
-├── middlewares/         # Middlewares customizados
+├── docs/               # Documentação do projeto
+├── controllers/        # Controllers das rotas
+├── middlewares/        # Middlewares customizados
 ├── models/             # Tipos TypeScript
 ├── routes/             # Definição das rotas
 ├── services/           # Lógica de negócio
