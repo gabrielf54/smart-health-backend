@@ -10,7 +10,7 @@
 - **Validação**: Zod
 - **Upload**: Multer + AWS S3 (CloudFront)
 - **IA**: OpenAI API
-- **Deploy**: Railway/Render
+- **Deploy**: Render
 
 ## 📦 Estrutura do Projeto
 
