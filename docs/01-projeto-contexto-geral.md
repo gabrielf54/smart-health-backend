@@ -1,7 +1,7 @@
 # Smart Health - Contexto Geral e Regras de Negócio
 
 ## 📋 Visão Geral
-Aplicação de nutricionista com inteligência artificial que cria dietas personalizadas e acompanha a evolução do usuário.
+Aplicação de nutricionista com inteligência artificial que cria dietas personalizadas e acompanha a evolução do usuário
 
 ## 🎯 Objetivos do Produto
 - Democratizar o acesso a orientação nutricional de qualidade
