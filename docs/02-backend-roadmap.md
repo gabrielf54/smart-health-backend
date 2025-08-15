@@ -8,7 +8,7 @@
 - **Banco**: PostgreSQL
 - **Autenticação**: JWT + bcrypt
 - **Validação**: Zod
-- **Upload**: Multer + AWS S3 (CloudFront)
+- **Upload**: Cloudflare R2 (compatível com S3)
 - **IA**: OpenAI API
 - **Deploy**: Render
 
@@ -103,11 +103,26 @@ src/
 ## 📸 ETAPA 5 - Fotos
 
 ### Upload de Imagens
-- [ ] Configurar AWS S3 ou Cloudinary
-- [ ] Middleware de upload com Multer
-- [ ] Endpoint upload foto (`POST /progress/photo`)
+- [ ] Configurar Cloudflare R2 (compatível com S3)
+- [ ] Preferir upload direto via URL pré-assinada (frontend → R2)
+- [ ] Endpoint registrar foto (`POST /progress/photo`) — apenas metadados após upload direto
 - [ ] Redimensionamento e compressão automática
 - [ ] Validações de formato, tamanho e segurança
+
+#### Configuração Cloudflare R2
+- [ ] Variáveis de ambiente:
+  - `R2_ACCOUNT_ID`
+  - `R2_ACCESS_KEY_ID`
+  - `R2_SECRET_ACCESS_KEY`
+  - `R2_BUCKET`
+  - `R2_PUBLIC_BASE_URL` (ex.: `https://<accountid>.r2.cloudflarestorage.com/<bucket>` ou domínio customizado)
+- [ ] SDK `@aws-sdk/client-s3` configurado com:
+  - `endpoint`: `https://<accountid>.r2.cloudflarestorage.com`
+  - `region`: `auto`
+  - `forcePathStyle`: `true`
+- [ ] Upload via URL pré-assinada (PUT) usando `@aws-sdk/s3-request-presigner`
+- [ ] Objetos privados por padrão; servir via URL assinada quando necessário
+- [ ] Padronizar chave do objeto: `progress-photos/{userId}/{yyyy}/{MM}/{dd}/{uuid}.jpg`
 
 ### Galeria de Progresso
 - [ ] Modelo de fotos de progresso
@@ -194,7 +209,8 @@ POST /diet/substitute  # Substituir alimento
 ```
 POST /progress/weight   # Registrar peso
 GET  /progress/history  # Histórico
-POST /progress/photo    # Upload foto
+POST /progress/photo    # Registrar metadados da foto (após upload direto)
+POST /progress/photo/presign # URL pré-assinada para upload direto
 ```
 
 ### Alimentos

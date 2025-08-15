@@ -126,6 +126,13 @@ src/
 - [ ] Validações de formato e tamanho
 - [ ] Indicadores de progresso de upload
 
+#### Fluxo de Upload (Cloudflare R2)
+- [ ] Solicitar URL pré-assinada ao backend (`POST /progress/photo/presign`)
+- [ ] Fazer `PUT` direto do browser para a URL pré-assinada (R2 S3-compatible)
+- [ ] Notificar backend para persistir metadados (`POST /progress/photo`)
+- [ ] Exibir imagem via URL assinada de leitura fornecida pelo backend
+- [ ] Tratar cancelamento/retry e feedback de progresso
+
 ### Galeria de Progresso
 - [ ] Timeline de fotos organizadas por data
 - [ ] Galeria de "antes e depois"

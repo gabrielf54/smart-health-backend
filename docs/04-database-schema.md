@@ -308,7 +308,9 @@ CREATE INDEX idx_weight_records_user_date ON weight_records(user_id, recorded_da
 CREATE TABLE progress_photos (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID REFERENCES users(id) ON DELETE CASCADE,
-    file_url VARCHAR(500) NOT NULL,
+    -- Armazenamento em Cloudflare R2 (S3-compatible)
+    object_key VARCHAR(500) NOT NULL, -- ex.: progress-photos/{userId}/{yyyy}/{MM}/{dd}/{uuid}.jpg
+    file_url VARCHAR(500),            -- opcional: URL pública
     file_size_bytes INTEGER,
     photo_type VARCHAR(20) CHECK (photo_type IN ('front', 'side', 'back')),
     taken_date DATE NOT NULL,

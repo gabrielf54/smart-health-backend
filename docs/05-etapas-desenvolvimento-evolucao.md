@@ -172,7 +172,7 @@ Permitir que o usuário registre fotos de progresso para acompanhamento visual d
 - **Interface**: Upload simples com drag & drop
 - **Tipos**: Foto frontal, lateral, costas
 - **Validações**: Formato, tamanho máximo
-- **Armazenamento**: AWS S3 ou similar
+- **Armazenamento**: Cloudflare R2 (compatível com S3 API)
 
 #### 5.2 Galeria de Progresso
 - **Timeline**: Organização cronológica das fotos
