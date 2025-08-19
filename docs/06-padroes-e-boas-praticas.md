@@ -6,31 +6,37 @@ src/
 ├── config/          # Configurações (ex.: Prisma)
 ├── controllers/     # Orquestram requisição/resposta. Sem regra de negócio
 ├── middlewares/     # Middlewares de Express
-├── models/          # Schemas Zod e tipos de request/response
+├── models/          # Classes de domínio (UserModel, ProfileModel, DietModel)
 ├── routes/          # Definição de rotas -> chamam controllers
 ├── security/        # Autenticação/Autorização, JWT
-├── services/        # Regras de negócio (domain services)
+├── services/        # Regras de negócio (services em classes) + helpers puros
+├── types/           # Tipos TypeScript centralizados (request/response/domain)
 ├── utils/           # Utilitários puros (sem side effects)
 └── index.ts         # Bootstrap do servidor
 ```
 
-- Controllers não contêm regra de negócio. Apenas:
-  - Validam entrada (via middleware `validateBody` com schemas em `models/`)
-  - Invocam services
+- **Controllers** não contêm regra de negócio. Apenas:
+  - Validam entrada (via middleware `validateBody` com schemas em `models/*Schemas.ts`)
+  - Invocam services (instâncias singleton de classes)
   - Tratam status code e retornos
-- Services contêm 100% da regra de negócio. Não conhecem Express. Podem usar Prisma, utilitários e outros services.
-- Rotas apenas conectam `middlewares` + `controllers`.
+- **Services** contêm 100% da regra de negócio, implementados como classes. Não conhecem Express. Podem usar Prisma, utilitários e outros services.
+- **Models (domínio)**: classes de leitura/representação de entidades principais quando necessário.
+- **Types**: todos os `types` e contratos compartilhados ficam em `src/types/` (ex.: `auth.ts`, `profile.ts`, `diet.ts`, `common.ts`).
+- **Rotas** apenas conectam `middlewares` + `controllers`.
 
 ## Convenções de Código
 - TypeScript estrito (`strict: true`).
 - Nomes descritivos:
   - Funções: verbos (`generateDiet`, `calculateCalorieTargets`)
   - Variáveis: substantivos (`userId`, `targetCalories`)
+- Padrão de exportação de funções: `export const minhaFunc = (...) => { ... }`.
+- Services como classes com singleton exportado: `export const myService = new MyService();`.
 - Early returns e tratamento de erros com `throw` no service. Controllers usam `errorHandler` global.
 - Sem comentários triviais. Comente apenas o “porquê”.
 
 ## Validação
 - Use Zod em `src/models/*Schemas.ts`.
+- Tipos inferidos/contratos públicos ficam em `src/types/` (não exportar `type` dos schemas Zod diretamente).
 - Middleware `validateBody(schema)` injeta `req.validated`.
 - Não usar validação manual nos controllers.
 

@@ -31,7 +31,7 @@ Aplicação de nutricionista com inteligência artificial que cria dietas person
 - Alimentos que não gosta
 
 ### 3. Geração da Dieta
-- Cálculo de necessidades calóricas (TMB + atividades)
+- Cálculo de necessidades calóricas (TMB + atividades) via `calculateCalorieTargets`
 - Distribuição de macronutrientes
 - Sugestão de cardápio semanal
 - Receitas e preparos
@@ -77,17 +77,18 @@ Aplicação de nutricionista com inteligência artificial que cria dietas person
 - Idade mínima: 16 anos, máxima: 100 anos
 - Calorias mínimas: 1200 kcal/dia
 - Máximo de 3 substituições por refeição
+- Tipos centralizados em `src/types/` (`common.ts`, `profile.ts`, `auth.ts`, `diet.ts`)
 
 ## 🚀 Estratégia de Desenvolvimento por Etapas
 
 ### ETAPA 1 - MVP (2-3 meses)
 **Funcionalidades Core:**
-1. ✅ Cadastro e autenticação de usuário
+1. ✅ Cadastro e autenticação de usuário (service em classe `AuthService`)
 2. ✅ Coleta de dados básicos (peso, altura, idade, sexo)
 3. ✅ Seleção de nível de atividade física
 4. ✅ Definição de objetivos simples
-5. ✅ Cálculo calórico básico
-6. ✅ Geração de dieta simples (templates)
+5. ✅ Cálculo calórico básico (`calculateCalorieTargets`)
+6. ✅ Geração de dieta simples (templates + `DietService`)
 7. ✅ Visualização do plano alimentar
 
 ### ETAPA 2 - Tipo Corporal

@@ -19,7 +19,8 @@ src/
 ├── docs/               # Documentação do projeto
 ├── controllers/        # Controllers das rotas
 ├── middlewares/        # Middlewares customizados
-├── models/             # Tipos TypeScript
+├── models/             # Modelos de domínio (classes)
+├── types/              # Tipos TypeScript centralizados
 ├── routes/             # Definição das rotas
 ├── services/           # Lógica de negócio
 ├── utils/              # Funções utilitárias
@@ -37,6 +38,8 @@ src/
 - [ ] Configurar variáveis de ambiente
 - [ ] Configurar CORS e segurança básica
 - [ ] Setup de deploy básico
+- [ ] Padronizar exports (`export const ... = () => {}`) e services como classes
+- [ ] Centralizar tipos em `src/types/`
 
 ### Sistema de Autenticação
 - [ ] Modelo de usuário no banco
@@ -46,6 +49,7 @@ src/
 - [ ] Endpoint de perfil (`GET /auth/profile`)
 - [ ] Validação de dados com Zod
 - [ ] Hash de senhas com bcrypt
+- [ ] Service `AuthService` (classe) + singleton `authService`
 
 ### Perfil do Usuário
 - [ ] Modelo de perfil no banco
@@ -54,6 +58,7 @@ src/
 - [ ] Validações de dados físicos
 - [ ] Cálculo de TMB (Taxa Metabólica Basal)
 - [ ] Cálculo de necessidades calóricas
+- [ ] Service `ProfileService` (classe) + singleton `profileService`
 
 ### Sistema de Dietas Básico
 - [ ] Modelo de dietas no banco
@@ -62,6 +67,7 @@ src/
 - [ ] Endpoint gerar dieta (`POST /diet/generate`)
 - [ ] Endpoint buscar dieta (`GET /diet`)
 - [ ] Sistema de templates de refeições
+- [ ] Service `DietService` (classe) + singleton `dietService`
 
 ## 🎨 ETAPA 2 - Tipo Corporal
 
