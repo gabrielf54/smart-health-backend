@@ -6,6 +6,7 @@ export const profileController = {
 	get: async (req: Request, res: Response) => {
 		const userId = (req as any).userId as string;
 		const result = await profileService.get(userId);
+		
 		return res.json(result);
 	},
 
@@ -22,7 +23,7 @@ export const profileController = {
 		};
 
 		const result = await profileService.upsert(userId, data);
-		
+
 		return res.json(result);
 	},
 };
