@@ -1,7 +1,8 @@
 import { prisma } from '../config/prisma';
 import { calculateCalorieTargets } from './calories';
+import type { Meal } from '../types/diet';
 
-function templateMeals(target: number) {
+const templateMeals = (target: number): Meal[] => {
 	const breakfast = Math.round(target * 0.25);
 	const lunch = Math.round(target * 0.4);
 	const dinner = Math.round(target * 0.25);
@@ -13,11 +14,10 @@ function templateMeals(target: number) {
 		{ name: 'Jantar', calories: dinner },
 		{ name: 'Lanches', calories: snacks },
 	];
-}
+};
 
-export const dietService = {
-
-	async get(userId: string) {
+export class DietService {
+	get = async (userId: string): Promise<{ targetCalories: number; meals: Meal[] }> => {
 		const profile = await prisma.profile.findUnique({ where: { userId } });
 		if (!profile) {
 			throw Object.assign(new Error('Complete o perfil primeiro'), { status: 400 });
@@ -27,8 +27,9 @@ export const dietService = {
 		const meals = templateMeals(target);
 
 		return { targetCalories: target, meals };
-	},
-	async generate(userId: string) {
+	};
+
+	generate = async (userId: string): Promise<{ id: string; targetCalories: number; meals: Meal[] }> => {
 		const profile = await prisma.profile.findUnique({ where: { userId } });
 		if (!profile) {
 			throw Object.assign(new Error('Complete o perfil primeiro'), { status: 400 });
@@ -39,7 +40,9 @@ export const dietService = {
 		const diet = await prisma.diet.create({ data: { userId, targetCalories: target, meals } });
 		
 		return { id: diet.id, targetCalories: target, meals };
-	},
-};
+	};
+}
+
+export const dietService = new DietService();
 
 

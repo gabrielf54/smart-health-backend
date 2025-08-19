@@ -1,13 +1,6 @@
-type ProfileCore = {
-	sex?: 'MALE' | 'FEMALE' | null;
-	weightKg?: number | null;
-	heightCm?: number | null;
-	age?: number | null;
-	activityLevel?: 'SEDENTARY' | 'LIGHT' | 'MODERATE' | 'HIGH' | 'EXTREME' | null;
-	goal?: 'LOSE_WEIGHT' | 'MAINTAIN' | 'GAIN_MUSCLE' | 'GAIN_WEIGHT' | null;
-};
+import type { ProfileCore } from '../types/profile';
 
-function harrisBenedict(profile: ProfileCore): number {
+const harrisBenedict = (profile: ProfileCore): number => {
 	const { sex, weightKg, heightCm, age } = profile;
 
 	if (!sex || !weightKg || !heightCm || !age) return 0;
@@ -17,9 +10,9 @@ function harrisBenedict(profile: ProfileCore): number {
 	}
 	
 	return 447.593 + 9.247 * weightKg + 3.098 * heightCm - 4.33 * age;
-}
+};
 
-function activityFactor(level?: ProfileCore['activityLevel']): number {
+const activityFactor = (level?: ProfileCore['activityLevel']): number => {
 	switch (level) {
 		case 'SEDENTARY':
 			return 1.2;
@@ -34,9 +27,9 @@ function activityFactor(level?: ProfileCore['activityLevel']): number {
 		default:
 			return 1.2;
 	}
-}
+};
 
-function goalAdjustment(goal?: ProfileCore['goal']): number {
+const goalAdjustment = (goal?: ProfileCore['goal']): number => {
 	switch (goal) {
 		case 'LOSE_WEIGHT':
 			return -400;
@@ -49,13 +42,13 @@ function goalAdjustment(goal?: ProfileCore['goal']): number {
 		default:
 			return 0;
 	}
-}
+};
 
-export function calculateCalorieTargets(profile: ProfileCore) {
+export const calculateCalorieTargets = (profile: ProfileCore) => {
 	const tmb = harrisBenedict(profile);
 	const total = Math.max(1200, Math.round(tmb * activityFactor(profile.activityLevel)));
 	const target = Math.round(total + goalAdjustment(profile.goal));
 	return { tmb: Math.round(tmb), total, target };
-}
+};
 
 

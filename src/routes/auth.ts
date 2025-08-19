@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { authMiddleware } from '../security/authMiddleware';
 import { validateBody } from '../middlewares/validate';
-import { z } from 'zod';
 import { authController } from '../controllers/authController';
 import { LoginSchema, RefreshSchema, RegisterSchema } from '../models/authSchemas';
 

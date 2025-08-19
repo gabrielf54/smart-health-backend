@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
 import { authService } from '../services/authService';
+import type { LoginInput, RefreshInput, RegisterInput } from '../types/auth';
 
 export const authController = {
 
 	register: async (req: Request, res: Response) => {
-		const { email, password } = (req as any).validated as { email: string; password: string };
+		const { email, password } = (req as any).validated as RegisterInput;
 
 		const result = await authService.register({ email, password });
 		
@@ -12,7 +13,7 @@ export const authController = {
 	},
 
 	login: async (req: Request, res: Response) => {
-		const { email, password } = (req as any).validated as { email: string; password: string };
+		const { email, password } = (req as any).validated as LoginInput;
 
 		const result = await authService.login({ email, password });
 
@@ -28,7 +29,7 @@ export const authController = {
 	},
 
 	refresh: async (req: Request, res: Response) => {
-		const { refreshToken } = (req as any).validated as { refreshToken: string };
+		const { refreshToken } = (req as any).validated as RefreshInput;
 
 		const result = await authService.refresh(refreshToken);
 

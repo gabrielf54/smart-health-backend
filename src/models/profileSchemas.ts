@@ -9,6 +9,4 @@ export const ProfileUpsertSchema = z.object({
 	goal: z.enum(['LOSE_WEIGHT', 'MAINTAIN', 'GAIN_MUSCLE', 'GAIN_WEIGHT']),
 });
 
-export type ProfileUpsertInput = z.infer<typeof ProfileUpsertSchema>;
-
 

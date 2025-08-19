@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import { z } from 'zod';
 import { authMiddleware } from '../security/authMiddleware';
 import { validateBody } from '../middlewares/validate';
 import { profileController } from '../controllers/profileController';
