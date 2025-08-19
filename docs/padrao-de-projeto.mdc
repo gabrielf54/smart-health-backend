@@ -1,0 +1,184 @@
+# Smart Health - Padrão de Projeto para Geração de Código
+
+Este documento define regras objetivas para a IA gerar código consistente com o backend. Siga exatamente os exemplos abaixo para criar novos arquivos, funções, services e controllers.
+
+## Estrutura de pastas (src/)
+```
+src/
+├── config/          # Configurações (ex.: Prisma)
+├── controllers/     # Orquestram req/res (sem regra de negócio)
+├── middlewares/     # Middlewares Express
+├── models/          # Modelos de domínio (classes)
+├── routes/          # Conecta middlewares + controllers
+├── security/        # Autenticação/Autorização
+├── services/        # Regras de negócio (classes) + helpers puros
+├── types/           # Tipos TypeScript centralizados
+├── utils/           # Utilitários puros (sem side effects)
+└── index.ts         # Bootstrap do servidor
+```
+
+## Regras de tipos (src/types/)
+- Todos os tipos compartilhados devem ficar em `src/types/`.
+- Não exportar `type` diretamente dos Schemas Zod; defina contratos de I/O em `src/types/`.
+
+Exemplo (criar novos tipos):
+```ts
+// src/types/progress.ts
+export type WeightEntryInput = {
+	dateIso: string; // yyyy-MM-dd
+	weightKg: number; // 30-300
+};
+
+export type WeightEntry = {
+	id: string;
+	userId: string;
+	dateIso: string;
+	weightKg: number;
+};
+```
+
+## Padrão de funções
+- Sempre exportar funções no formato `export const nome = (...) => { ... }`.
+- Funções utilitárias e helpers devem ser puras.
+
+Exemplo:
+```ts
+export const parseDateIso = (value: string): Date => {
+	const date = new Date(value);
+	if (Number.isNaN(date.getTime())) {
+		throw Object.assign(new Error('Data inválida'), { status: 400 });
+	}
+	return date;
+};
+```
+
+## Services como classes + singleton
+- Services devem ser classes com métodos de instância usando arrow functions.
+- Exportar um singleton com `export const nomeService = new NomeService();`.
+- Services não conhecem Express; podem usar Prisma, utils, outros services.
+
+Exemplo de implementação e instância:
+```ts
+// src/services/progressService.ts
+import { prisma } from '../config/prisma';
+import type { WeightEntryInput, WeightEntry } from '../types/progress';
+
+export class ProgressService {
+	create = async (userId: string, input: WeightEntryInput): Promise<WeightEntry> => {
+		if (input.weightKg < 30 || input.weightKg > 300) {
+			throw Object.assign(new Error('Peso fora dos limites'), { status: 400 });
+		}
+		const created = await prisma.weightEntry.create({
+			data: { userId, dateIso: input.dateIso, weightKg: input.weightKg },
+		});
+		return { id: created.id, userId, dateIso: created.dateIso, weightKg: created.weightKg };
+	};
+
+	list = async (userId: string): Promise<WeightEntry[]> => {
+		const items = await prisma.weightEntry.findMany({ where: { userId }, orderBy: { dateIso: 'desc' } });
+		return items.map(i => ({ id: i.id, userId: i.userId, dateIso: i.dateIso, weightKg: i.weightKg }));
+	};
+}
+
+export const progressService = new ProgressService();
+```
+
+Pontos importantes:
+- Métodos como propriedades arrow (`method = async (...) => {}`) para preservar `this`.
+- Lançar `Error` com `{ status }` quando aplicável.
+
+## Controllers
+- Controller é um objeto com métodos assíncronos (arrow) que consomem services.
+- Não há regra de negócio em controllers.
+
+Exemplo:
+```ts
+// src/controllers/progressController.ts
+import { Request, Response } from 'express';
+import { progressService } from '../services/progressService';
+import type { WeightEntryInput } from '../types/progress';
+
+export const progressController = {
+	create: async (req: Request, res: Response) => {
+		const userId = (req as any).userId as string;
+		const input = (req as any).validated as WeightEntryInput;
+		const result = await progressService.create(userId, input);
+		return res.status(201).json(result);
+	},
+	list: async (req: Request, res: Response) => {
+		const userId = (req as any).userId as string;
+		const result = await progressService.list(userId);
+		return res.json(result);
+	},
+};
+```
+
+## Rotas
+- Usar `validateBody` com Schemas Zod.
+- Encadear `authMiddleware` quando a rota exigir usuário autenticado.
+
+Exemplo:
+```ts
+// src/routes/progress.ts
+import { Router } from 'express';
+import { authMiddleware } from '../security/authMiddleware';
+import { validateBody } from '../middlewares/validate';
+import { progressController } from '../controllers/progressController';
+import { WeightEntrySchema } from '../models/progressSchemas';
+
+export const progressRouter = Router();
+
+progressRouter.post('/weight', authMiddleware, validateBody(WeightEntrySchema), progressController.create);
+progressRouter.get('/history', authMiddleware, progressController.list);
+```
+
+## Schemas Zod
+- Local: `src/models/*Schemas.ts`.
+- Objetivo: validar entrada. Não exporta `type`; os contratos ficam em `src/types/`.
+
+Exemplo:
+```ts
+// src/models/progressSchemas.ts
+import { z } from 'zod';
+
+export const WeightEntrySchema = z.object({
+	dateIso: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+	weightKg: z.number().min(30).max(300),
+});
+```
+
+## Middlewares
+- Padrão de export: `export const nome = (req, res, next) => { ... }`.
+- `validateBody(schema)` injeta `req.validated`.
+- `authMiddleware` injeta `req.userId` ou retorna 401.
+
+## Utilitários (utils/)
+- Funções puras, sem side effects.
+- Exportar sempre com `export const ...`.
+
+## Erros e respostas
+- Services devem lançar `Error` enriquecido: `throw Object.assign(new Error(msg), { status: 400 });`.
+- `errorHandler` responde `{ error: message }` e o status adequado.
+
+## Acesso a dados
+- Usar `prisma` de `src/config/prisma.ts`. Não instanciar `PrismaClient` fora de lá.
+
+## Autenticação
+- JWT via `Authorization: Bearer <token>`.
+- Secrets e configs em `src/utils/env.ts`.
+
+## Nomeação e estilo
+- Funções: verbos. Variáveis: substantivos. Nomes descritivos, sem abreviações opacas.
+- Evitar ternários complexos; preferir blocos claros.
+- Seguir `export const` para funções e singletons de services.
+
+## Exemplo completo (novo módulo)
+Checklist para criar um novo módulo (ex.: Progress):
+1) Criar tipos em `src/types/progress.ts`.
+2) Criar Schemas Zod em `src/models/progressSchemas.ts`.
+3) Criar service classe em `src/services/progressService.ts` + singleton exportado.
+4) Criar controller em `src/controllers/progressController.ts`.
+5) Criar rotas em `src/routes/progress.ts`.
+6) Registrar rota em `src/routes/index.ts`.
+
+Respeitar sempre os padrões acima.

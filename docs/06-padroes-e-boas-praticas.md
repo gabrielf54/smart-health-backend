@@ -87,4 +87,10 @@ src/
 4. Exponha pela rota com `validateBody` e middlewares necessários.
 5. Adicione testes.
 
+Consulte também o guia complementar em `docs/padrao-de-projeto.mdc` para exemplos práticos de:
+- Como instanciar services (classes + singleton)
+- Padrões de funções (`export const ... = () => {}`)
+- Organização de tipos em `src/types/`
+- Estrutura de controllers e rotas
+
 
