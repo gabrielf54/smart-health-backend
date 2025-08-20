@@ -34,13 +34,23 @@ app.get('/health', (_req, res) => {
 
 app.use('/', router);
 
+// Error handler (must be after routes)
+app.use(errorHandler);
+
+// Validate required secrets in production
+if (env.NODE_ENV === 'production') {
+	if (!process.env.JWT_SECRET || process.env.JWT_SECRET === 'change-me') {
+		throw new Error('JWT_SECRET must be set securely in production');
+	}
+	if (!process.env.JWT_REFRESH_SECRET || process.env.JWT_REFRESH_SECRET === 'change-me-refresh') {
+		throw new Error('JWT_REFRESH_SECRET must be set securely in production');
+	}
+}
+
 const port = env.PORT;
 app.listen(port, () => {
 	// eslint-disable-next-line no-console
 	console.log(`Smart Health API running on port ${port}`);
 });
-
-// Error handler (must be after routes)
-app.use(errorHandler);
 
 
