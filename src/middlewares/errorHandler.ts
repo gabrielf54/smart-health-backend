@@ -4,7 +4,8 @@ export const errorHandler = (err: unknown, _req: Request, res: Response, _next: 
 	const anyErr = err as any;
 	const status = typeof anyErr?.status === 'number' ? anyErr.status : 500;
 	const message = anyErr?.message ?? 'Internal Server Error';
-	return res.status(status).json({ error: message });
+	const details = anyErr?.details ?? undefined;
+	return res.status(status).json({ error: message, ...(details ? { details } : {}) });
 };
 
 
