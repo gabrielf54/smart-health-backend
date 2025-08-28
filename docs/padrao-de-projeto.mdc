@@ -156,9 +156,52 @@ export const WeightEntrySchema = z.object({
 - Funções puras, sem side effects.
 - Exportar sempre com `export const ...`.
 
-## Erros e respostas
-- Services devem lançar `Error` enriquecido: `throw Object.assign(new Error(msg), { status: 400 });`.
-- `errorHandler` responde `{ error: message }` e o status adequado.
+## Erros e respostas (Padrão Unificado)
+- Sempre lançar `AppError` nos Services e Middlewares de autenticação/validação.
+- O `errorHandler` global responde com o shape padronizado abaixo:
+
+```json
+{
+  "error": {
+    "code": "STRING_CODE",
+    "message": "Mensagem legível",
+    "details": { "opcional": "conteúdo específico do erro" }
+  }
+}
+```
+
+### Códigos e helpers disponíveis
+`AppError` em `src/utils/appError.ts` expõe fábricas:
+- `badRequest(message, details?)` → 400, code: `BAD_REQUEST`
+- `unauthorized(message, details?)` → 401, code: `UNAUTHORIZED`
+- `forbidden(message, details?)` → 403, code: `FORBIDDEN`
+- `notFound(message, details?)` → 404, code: `NOT_FOUND`
+- `conflict(message, details?)` → 409, code: `CONFLICT`
+- `internal(message, details?)` → 500, code: `INTERNAL_ERROR`
+
+### Exemplos
+- Validação Zod (em `validateBody`):
+```ts
+// src/middlewares/validate.ts
+if (!parsed.success) return next(AppError.badRequest('Dados inválidos', parsed.error.flatten()));
+```
+
+- Auth (em `authMiddleware`):
+```ts
+// src/security/authMiddleware.ts
+if (!header?.startsWith('Bearer ')) return next(AppError.unauthorized('Não autenticado'));
+catch { return next(AppError.unauthorized('Token inválido')); }
+```
+
+- Service:
+```ts
+// src/services/authService.ts
+if (existing) throw AppError.conflict('Email já cadastrado');
+if (!user) throw AppError.unauthorized('Credenciais inválidas');
+```
+
+### Resposta de erro unificada
+O `errorHandler` central formata erros (incluindo genéricos) no shape acima. Erros não mapeados caem em `INTERNAL_ERROR` com status 500.
 
 ## Acesso a dados
 - Usar `prisma` de `src/config/prisma.ts`. Não instanciar `PrismaClient` fora de lá.
