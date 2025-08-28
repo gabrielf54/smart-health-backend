@@ -1,6 +1,7 @@
 import { prisma } from '../config/prisma';
 import { calculateCalorieTargets } from './calories';
 import type { Meal } from '../types/diet';
+import { AppError } from '../utils/appError';
 
 const templateMeals = (target: number): Meal[] => {
 	const breakfast = Math.round(target * 0.25);
@@ -20,7 +21,7 @@ export class DietService {
 	get = async (userId: string): Promise<{ targetCalories: number; meals: Meal[] }> => {
 		const profile = await prisma.profile.findUnique({ where: { userId } });
 		if (!profile) {
-			throw Object.assign(new Error('Complete o perfil primeiro'), { status: 400 });
+			throw AppError.badRequest('Complete o perfil primeiro');
 		}
 
 		const { target } = calculateCalorieTargets(profile);
@@ -32,7 +33,7 @@ export class DietService {
 	generate = async (userId: string): Promise<{ id: string; targetCalories: number; meals: Meal[] }> => {
 		const profile = await prisma.profile.findUnique({ where: { userId } });
 		if (!profile) {
-			throw Object.assign(new Error('Complete o perfil primeiro'), { status: 400 });
+			throw AppError.badRequest('Complete o perfil primeiro');
 		}
 
 		const { target } = calculateCalorieTargets(profile);
