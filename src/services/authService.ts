@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import jwt, { type Secret, type SignOptions } from 'jsonwebtoken';
-import { prisma } from '../config/prisma';
 import { env } from '../utils/env';
 import { AppError } from '../utils/appError';
 import type { LoginInput, RegisterInput, RefreshInput, Tokens, AuthUser } from '../types/auth';
